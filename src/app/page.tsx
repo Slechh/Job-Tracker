@@ -1,17 +1,8 @@
-import { prisma } from "@/lib/prisma";
-
+import Image from "next/image";
 export default async function HomePage() {
-  const jobs = await prisma.job.findMany();
-
   return (
-    <main className="p-10">
-      <h1>Jobs count: {jobs.length}</h1>
-
-      {jobs.map((job) => (
-        <div key={job.id}>
-          {job.company} - {job.position}
-        </div>
-      ))}
+    <main className="max-w-5xl mx-auto px-4 py-8">
+      <Image src="/DtrixLogo.png" alt="Dtrix" width={40} height={40} />
     </main>
   );
 }
