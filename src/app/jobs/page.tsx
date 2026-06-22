@@ -7,16 +7,33 @@ import { Icon } from "@/components/Icon";
 import { filterLabels } from "@/constants/filterLabels";
 
 import type { FilterType } from "@/constants/filterLabels";
+import Link from "next/link";
 
 export default function JobsPage() {
   const [inputValue, setInputValue] = useState("");
   const [activeTab, setActiveTab] = useState<FilterType>("All");
 
+  const job = {
+    id: 1,
+    company: "SoftServe",
+    position: "Frontend Developer",
+    location: "Remote",
+    salary: "$1500 - $2500",
+    status: "Applied",
+    technologies: "React, TypeScript, Next.js, Tailwind",
+    description:
+      "Frontend position focused on building modern web interfaces, working with API data and improving user experience.",
+    notes: "Resume sent. Waiting for HR response.",
+    createdAt: "20 Jun 2026",
+  };
+
+  const jobs = [job];
+
   return (
     <main className="py-4 px-4">
       <div className="max-w-5xl mx-auto flex flex-col gap-3">
         <h1 className="font-bold text-3xl">Jobs</h1>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -55,7 +72,7 @@ export default function JobsPage() {
                 key={item}
                 className={clsx(
                   activeTab === item && "bg-light-gray text-light-blue",
-                  "flex-1 py-2.5 px-2.5 rounded-sm transition-colors duration-300",
+                  "flex-1 py-1.5 px-2.5 rounded-sm transition-colors duration-300",
                 )}
                 onClick={() => setActiveTab(item)}
               >
@@ -63,6 +80,59 @@ export default function JobsPage() {
               </button>
             ))}
           </div>
+          <ul>
+            {jobs.map((job) => (
+              <li key={job.id}>
+                <Link href="">
+                  <div className="flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between">
+                    <div className="flex gap-4.5 items-center">
+                      <div className="size-30 rounded-full bg-light-gray flex items-center justify-center text-2xl font-bold">
+                        {job.company[0]}
+                      </div>
+                      <div className="flex flex-col gap-3.75">
+                        <div className="flex flex-col">
+                          <h2 className="text-xl font-semibold">
+                            {job.position}
+                          </h2>
+                          <p className="text-md">
+                            {job.company} / {job.location}
+                          </p>
+                        </div>
+                        <div className="flex flex-col">
+                          <ul className="flex flex-col gap-0.5">
+                            <li className="flex gap-4 items-center text-md">
+                              <h5 className="w-24.5 text-gray-500">Added:</h5>
+                              <p>{job.createdAt}</p>
+                            </li>
+                            <li className="flex gap-4 items-center text-md">
+                              <h5 className="w-24.5 text-gray-500">Salary:</h5>
+                              <p>{job.salary}</p>
+                            </li>
+                            <li className="flex gap-4 items-center text-md">
+                              <h5 className="w-24.5 text-gray-500">
+                                Technologies:
+                              </h5>
+                              <p className="truncate w-130">
+                                {job.technologies} adsa d ad a adsadsad adsad
+                                ada adsa dsa dasd sad ad
+                              </p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    {/*2*/}
+                    <div className="flex flex-col">
+                      <h2 className="flex gap-2 items-center text-sm px-1 py-0.5 text-blue bg-soft-slate rounded-md">
+                        <Icon id="loading-icon" className="size-4" />
+                        {job.status.toUpperCase()}
+                      </h2>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </main>

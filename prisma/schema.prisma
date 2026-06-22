@@ -7,15 +7,16 @@ datasource db {
 }
 
 model Job {
-  id          Int      @id @default(autoincrement())
-  company     String
-  position    String
-  location    String?
-  link        String?
-  salary      String?
-  status      String   @default("Saved")
-  description String?
-  notes       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  company      String
+  position     String
+  location     String?
+  link         String?
+  salary       String?
+  status       String   @default("Saved")
+  technologies String?
+  description  String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
