@@ -1,12 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-light-blue: #1ea7ff;
   --color-blue: #3f8bee;
-  --color-soft-blate: #e7ebf3;
+  --color-soft-slate: #e7ebf3;
+
+  --color-light-blue: #1ea7ff;
+  --color-light-gray: #f3f2f2;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f7f8fa;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
