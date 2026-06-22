@@ -84,7 +84,10 @@ export default function JobsPage() {
             {jobs.map((job) => (
               <li key={job.id}>
                 <Link href="">
-                  <div className="flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between">
+                  <div
+                    className="relative flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between before:content-[''] before:h-full before:w-1  
+                    before:absolute before:rounded-l-md before:top-0 before:left-0 hover:before:bg-light-blue hover:shadow-[0_0_10px_rgba(0,0,0,0.08)] before:transition-all before:duration-300 transition-shadow duration-300"
+                  >
                     <div className="flex gap-4.5 items-center">
                       <div className="size-30 rounded-full bg-light-gray flex items-center justify-center text-2xl font-bold">
                         {job.company[0]}
