@@ -20,3 +20,8 @@ button:not(:disabled) {
 button:disabled {
   cursor: not-allowed;
 }
+
+textarea {
+  resize: none;
+  outline: none;
+}

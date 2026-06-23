@@ -1,3 +1,53 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+
+import { inputOptions } from "@/constants/inputOptions";
+import type { JobFormData } from "@/types/job";
+import { textareaOptions } from "@/constants/textareaOptions";
+
 export default function NewJobPage() {
-  return <h1>Hi NewJobPage</h1>;
+  const { register, handleSubmit } = useForm<JobFormData>();
+
+  const onSubmit = (data: JobFormData) => {
+    console.log(data);
+  };
+  return (
+    <main className="p-4">
+      <div className="max-w-xl mx-auto flex flex-col gap-3">
+        <h1 className="font-bold text-3xl">Add Job</h1>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white rounded-md border border-soft-slate px-5 py-4 flex flex-col gap-5"
+        >
+          <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+            {inputOptions.map((option) => (
+              <div key={option.label} className="flex flex-col gap-1.5">
+                <label htmlFor={option.forInfo}>{option.label}</label>
+                <input
+                  id={option.forInfo}
+                  placeholder={option.placeholder}
+                  className="border border-soft-slate px-3 py-2 rounded-sm hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
+                  {...register(option.forInfo)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-5">
+            {textareaOptions.map((option) => (
+              <div key={option.label} className="flex flex-col gap-1">
+                <label htmlFor={option.forInfo}>{option.label}</label>
+                <textarea
+                  id={option.forInfo}
+                  placeholder={option.placeholder}
+                  className="border border-soft-slate px-3 py-2 rounded-sm h-30 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
+                  {...register(option.forInfo)}
+                />
+              </div>
+            ))}
+          </div>
+        </form>
+      </div>
+    </main>
+  );
 }

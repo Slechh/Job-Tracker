@@ -1,10 +1,10 @@
-type JobPageProps = {
+type JobInfoPageProps = {
   params: Promise<{
     id: string;
   }>;
 };
 
-export default async function JobPage({ params }: JobPageProps) {
+export default async function JobInfoPage({ params }: JobInfoPageProps) {
   const { id } = await params;
 
   return (
