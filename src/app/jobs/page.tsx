@@ -83,7 +83,7 @@ export default function JobsPage() {
           <ul>
             {jobs.map((job) => (
               <li key={job.id}>
-                <Link href="">
+                <Link href={`/jobs/${job.id}`}>
                   <div
                     className="relative flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between before:content-[''] before:h-full before:w-1  
                     before:absolute before:rounded-l-md before:top-0 before:left-0 hover:before:bg-light-blue hover:shadow-[0_0_10px_rgba(0,0,0,0.08)] before:transition-all before:duration-300 transition-shadow duration-300"
