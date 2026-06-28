@@ -10,7 +10,13 @@ import { createJob } from "@/api/jobs";
 import { toast } from "sonner";
 
 export default function NewJobPage() {
-  const { register, handleSubmit, control, reset } = useForm<JobFormData>({
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm<JobFormData>({
     defaultValues: {
       status: "Saved",
     },
@@ -44,8 +50,17 @@ export default function NewJobPage() {
                     id={option.forInfo}
                     placeholder={option.placeholder}
                     className="border border-soft-slate px-3 py-2 rounded-sm hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
-                    {...register(option.forInfo)}
+                    {...register(option.forInfo, {
+                      required: option.required
+                        ? `${option.label} is required`
+                        : false,
+                    })}
                   />
+                  {errors[option.forInfo] && (
+                    <p className="text-sm text-red-500">
+                      {errors[option.forInfo]?.message}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -63,7 +78,7 @@ export default function NewJobPage() {
                   <textarea
                     id={option.forInfo}
                     placeholder={option.placeholder}
-                    className="border border-soft-slate px-3 py-2 rounded-sm h-30 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
+                    className="border border-soft-slate px-3 py-2 rounded-sm h-25 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
                     {...register(option.forInfo)}
                   />
                 </div>
