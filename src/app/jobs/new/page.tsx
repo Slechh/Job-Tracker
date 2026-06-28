@@ -1,13 +1,18 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import { inputOptions } from "@/constants/inputOptions";
 import type { JobFormData } from "@/types/job";
 import { textareaOptions } from "@/constants/textareaOptions";
+import { Select } from "@/components/Select";
 
 export default function NewJobPage() {
-  const { register, handleSubmit } = useForm<JobFormData>();
+  const { register, handleSubmit, control } = useForm<JobFormData>({
+    defaultValues: {
+      status: "Saved",
+    },
+  });
 
   const onSubmit = (data: JobFormData) => {
     console.log(data);
@@ -18,6 +23,7 @@ export default function NewJobPage() {
         <h1 className="font-bold text-3xl">Add Job</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
+          autoComplete="off"
           className="bg-white rounded-md border border-soft-slate px-5 py-4 flex flex-col gap-10"
         >
           <div className="flex flex-col gap-5">
@@ -34,6 +40,13 @@ export default function NewJobPage() {
                 </div>
               ))}
             </div>
+            <Controller
+              name="status"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value} onChange={field.onChange} />
+              )}
+            />
             <div className="flex flex-col gap-5">
               {textareaOptions.map((option) => (
                 <div key={option.label} className="flex flex-col gap-1.5">

@@ -1,5 +1,3 @@
-export type FilterType = (typeof filterLabels)[number];
-
 export const filterLabels = [
   "All",
   "Saved",
@@ -8,3 +6,5 @@ export const filterLabels = [
   "Offer",
   "Rejected",
 ] as const;
+
+export type FilterType = (typeof filterLabels)[number];

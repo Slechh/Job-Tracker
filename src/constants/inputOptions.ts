@@ -16,6 +16,5 @@ export const inputOptions: InputOptions[] = [
     placeholder: "Enter technologies...",
     forInfo: "technologies",
   },
-  { label: "Status", placeholder: "Enter status...", forInfo: "status" },
   { label: "Link", placeholder: "Enter link...", forInfo: "link" },
 ];
