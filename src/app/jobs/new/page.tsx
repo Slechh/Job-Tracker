@@ -41,8 +41,8 @@ export default function NewJobPage() {
           autoComplete="off"
           className="bg-white rounded-md border border-soft-slate px-5 py-4 flex flex-col gap-10"
         >
-          <div className="flex flex-col gap-5">
-            <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+          <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-2 gap-x-10 gap-y-2">
               {inputOptions.map((option) => (
                 <div key={option.label} className="flex flex-col gap-1.5">
                   <label htmlFor={option.forInfo}>{option.label}</label>
@@ -56,33 +56,33 @@ export default function NewJobPage() {
                         : false,
                     })}
                   />
-                  {errors[option.forInfo] && (
-                    <p className="text-sm text-red-500">
-                      {errors[option.forInfo]?.message}
-                    </p>
-                  )}
+                  <p className="min-h-5 text-sm text-red-500">
+                    {errors[option.forInfo]?.message}
+                  </p>
                 </div>
               ))}
             </div>
-            <Controller
-              name="status"
-              control={control}
-              render={({ field }) => (
-                <Select value={field.value} onChange={field.onChange} />
-              )}
-            />
             <div className="flex flex-col gap-5">
-              {textareaOptions.map((option) => (
-                <div key={option.label} className="flex flex-col gap-1.5">
-                  <label htmlFor={option.forInfo}>{option.label}</label>
-                  <textarea
-                    id={option.forInfo}
-                    placeholder={option.placeholder}
-                    className="border border-soft-slate px-3 py-2 rounded-sm h-25 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
-                    {...register(option.forInfo)}
-                  />
-                </div>
-              ))}
+              <Controller
+                name="status"
+                control={control}
+                render={({ field }) => (
+                  <Select value={field.value} onChange={field.onChange} />
+                )}
+              />
+              <div className="flex flex-col gap-5">
+                {textareaOptions.map((option) => (
+                  <div key={option.label} className="flex flex-col gap-1.5">
+                    <label htmlFor={option.forInfo}>{option.label}</label>
+                    <textarea
+                      id={option.forInfo}
+                      placeholder={option.placeholder}
+                      className="border border-soft-slate px-3 py-2 rounded-sm h-25 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
+                      {...register(option.forInfo)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex justify-end">

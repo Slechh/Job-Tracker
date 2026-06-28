@@ -29,7 +29,7 @@ export function Select({ value, onChange }: SelectProps) {
             id="chevron-icon"
             className={clsx(
               isClicked && "rotate-180",
-              "size-3 transition-all duration-300",
+              "size-2.5 transition-all duration-300",
             )}
           />
         </div>
@@ -44,6 +44,7 @@ export function Select({ value, onChange }: SelectProps) {
                 onChange(value);
                 setIsClicked(false);
               }}
+              activeValue={value}
             />
           ))}
         </div>

@@ -1,8 +1,8 @@
 export const selectStatusItems = [
-  "Saved",
   "Applied",
   "Interview",
   "Offer",
+  "Saved",
   "Rejected",
 ] as const;
 
