@@ -116,8 +116,7 @@ export default function JobsPage() {
                                 Technologies:
                               </h5>
                               <p className="truncate w-130">
-                                {job.technologies} adsa d ad a adsadsad adsad
-                                ada adsa dsa dasd sad ad
+                                {job.technologies}
                               </p>
                             </li>
                           </ul>

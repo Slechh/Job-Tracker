@@ -6,17 +6,21 @@ import { inputOptions } from "@/constants/inputOptions";
 import type { JobFormData } from "@/types/job";
 import { textareaOptions } from "@/constants/textareaOptions";
 import { Select } from "@/components/Select";
+import { createJob } from "@/api/jobs";
 
 export default function NewJobPage() {
-  const { register, handleSubmit, control } = useForm<JobFormData>({
+  const { register, handleSubmit, control, reset } = useForm<JobFormData>({
     defaultValues: {
       status: "Saved",
     },
   });
 
-  const onSubmit = (data: JobFormData) => {
-    console.log(data);
+  const onSubmit = async (data: JobFormData) => {
+    await createJob(data);
+
+    reset();
   };
+
   return (
     <main className="p-4">
       <div className="max-w-3xl mx-auto flex flex-col gap-3">
