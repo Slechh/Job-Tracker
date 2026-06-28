@@ -7,6 +7,7 @@ import type { JobFormData } from "@/types/job";
 import { textareaOptions } from "@/constants/textareaOptions";
 import { Select } from "@/components/Select";
 import { createJob } from "@/api/jobs";
+import { toast } from "sonner";
 
 export default function NewJobPage() {
   const { register, handleSubmit, control, reset } = useForm<JobFormData>({
@@ -16,9 +17,13 @@ export default function NewJobPage() {
   });
 
   const onSubmit = async (data: JobFormData) => {
-    await createJob(data);
-
-    reset();
+    try {
+      await createJob(data);
+      toast.success("Job created successfully!");
+      reset();
+    } catch {
+      toast.error("Failed to create job!");
+    }
   };
 
   return (
