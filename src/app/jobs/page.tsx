@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 
-import { SearchInput } from "@/components/SearchInput";
-import { FiltersTab } from "@/components/FiltersTab";
-import { JobsList } from "@/components/JobsList";
-import { JobsListSkeleton } from "@/components/JobsListSkeleton";
+import { SearchInput } from "@/components/jobs/SearchInput";
+import { FiltersTab } from "@/components/jobs/FiltersTab";
+import { JobsList } from "@/components/jobs/JobsList";
+import { JobsListSkeleton } from "@/components/jobs/JobsListSkeleton";
 
 export default function JobsPage() {
   return (
