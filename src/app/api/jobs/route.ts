@@ -21,3 +21,13 @@ export async function POST(request: Request) {
 
   return NextResponse.json(job);
 }
+
+export async function GET() {
+  const jobs = await prisma.job.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return NextResponse.json(jobs);
+}

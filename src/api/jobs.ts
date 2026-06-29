@@ -11,3 +11,9 @@ export async function createJob(data: JobFormData) {
 
   return response.json();
 }
+
+export async function getJobs() {
+  const response = await fetch("api/jobs");
+
+  return response.json();
+}
