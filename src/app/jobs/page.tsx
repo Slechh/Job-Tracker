@@ -5,7 +5,11 @@ import { FiltersTab } from "@/components/jobs/FiltersTab";
 import { JobsList } from "@/components/jobs/JobsList";
 import { JobsListSkeleton } from "@/components/jobs/JobsListSkeleton";
 
-export default function JobsPage() {
+type JobsPageProps = {
+  searchParams: Promise<{ status?: string; search?: string }>;
+};
+
+export default async function JobsPage({ searchParams }: JobsPageProps) {
   return (
     <main className="py-4 px-4">
       <div className="max-w-5xl mx-auto flex flex-col gap-3">
@@ -14,7 +18,7 @@ export default function JobsPage() {
           <SearchInput />
           <FiltersTab />
           <Suspense fallback={<JobsListSkeleton />}>
-            <JobsList />
+            <JobsList searchParams={searchParams} />
           </Suspense>
         </div>
       </div>

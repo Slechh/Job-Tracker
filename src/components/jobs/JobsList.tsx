@@ -1,8 +1,29 @@
 import { JobCard } from "./JobCard";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
-export async function JobsList() {
+type JobsListProps = {
+  searchParams: Promise<{ status?: string; search?: string }>;
+};
+
+export async function JobsList({ searchParams }: JobsListProps) {
+  const { status, search } = await searchParams;
+  const where: Prisma.JobWhereInput = {};
+
+  if (status && status !== "All") {
+    where.status = status;
+  }
+
+  if (search) {
+    where.OR = [
+      { company: { contains: search, mode: "insensitive" } },
+      { position: { contains: search, mode: "insensitive" } },
+      { technologies: { contains: search, mode: "insensitive" } },
+    ];
+  }
+
   const jobs = await prisma.job.findMany({
+    where,
     orderBy: {
       createdAt: "desc",
     },
