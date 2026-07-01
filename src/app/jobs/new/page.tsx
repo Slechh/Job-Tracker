@@ -1,13 +1,15 @@
 "use client";
 
 import { Controller, useForm } from "react-hook-form";
-
-import { inputOptions } from "@/constants/inputOptions";
-import type { JobFormData } from "@/types/job";
-import { textareaOptions } from "@/constants/textareaOptions";
-import { Select } from "@/components/Select";
-import { createJob } from "@/api/jobs";
 import { toast } from "sonner";
+
+import { Select } from "@/components/Select";
+import { FormInputs } from "@/components/FormInputs";
+import { FormTextarea } from "@/components/FormTextareas";
+
+import type { JobFormData } from "@/types/job";
+
+import { createJob } from "@/api/jobs";
 
 export default function NewJobPage() {
   const {
@@ -42,26 +44,7 @@ export default function NewJobPage() {
           className="bg-white rounded-md border border-soft-slate px-5 py-4 flex flex-col gap-10"
         >
           <div className="flex flex-col gap-2">
-            <div className="grid grid-cols-2 gap-x-10 gap-y-2">
-              {inputOptions.map((option) => (
-                <div key={option.label} className="flex flex-col gap-1.5">
-                  <label htmlFor={option.forInfo}>{option.label}</label>
-                  <input
-                    id={option.forInfo}
-                    placeholder={option.placeholder}
-                    className="border border-soft-slate px-3 py-2 rounded-sm hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
-                    {...register(option.forInfo, {
-                      required: option.required
-                        ? `${option.label} is required`
-                        : false,
-                    })}
-                  />
-                  <p className="min-h-5 text-sm text-red-500">
-                    {errors[option.forInfo]?.message}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FormInputs register={register} errors={errors} />
             <div className="flex flex-col gap-5">
               <Controller
                 name="status"
@@ -70,19 +53,7 @@ export default function NewJobPage() {
                   <Select value={field.value} onChange={field.onChange} />
                 )}
               />
-              <div className="flex flex-col gap-5">
-                {textareaOptions.map((option) => (
-                  <div key={option.label} className="flex flex-col gap-1.5">
-                    <label htmlFor={option.forInfo}>{option.label}</label>
-                    <textarea
-                      id={option.forInfo}
-                      placeholder={option.placeholder}
-                      className="border border-soft-slate px-3 py-2 rounded-sm h-25 hover:border-blue-500 focus:border-amber-500 focus:outline-none transition-colors duration-500"
-                      {...register(option.forInfo)}
-                    />
-                  </div>
-                ))}
-              </div>
+              <FormTextarea register={register} />
             </div>
           </div>
           <div className="flex justify-end">
