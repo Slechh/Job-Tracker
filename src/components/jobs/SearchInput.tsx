@@ -1,26 +1,15 @@
 "use client";
 
-import { Icon } from "@/components/Icon";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useUpdateParams } from "@/hooks/useUpdateParams";
+
+import { Icon } from "@/components/Icon";
 
 export function SearchInput() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search");
-  const [inputValue, setInputValue] = useState(search ?? "");
+  const { searchParams, handleAction } = useUpdateParams("", "search");
 
-  const handleChange = (search: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (search === "") {
-      params.delete("search");
-    } else {
-      params.set("search", search);
-    }
-
-    router.push(`/jobs?${params.toString()}`);
-  };
+  const search = searchParams.get("search") ?? "";
+  const [inputValue, setInputValue] = useState(search);
 
   return (
     <form
@@ -44,7 +33,7 @@ export function SearchInput() {
               type="button"
               onClick={() => {
                 setInputValue("");
-                handleChange("");
+                handleAction("");
               }}
               className="size-6 flex items-center justify-center"
             >
@@ -53,7 +42,7 @@ export function SearchInput() {
           )}
           <button
             type="submit"
-            onClick={() => handleChange(inputValue)}
+            onClick={() => handleAction(inputValue)}
             className="size-9 bg-blue p-2 rounded-sm flex items-center justify-center hover:bg-light-blue transition-colors duration-300"
           >
             <Icon id="search-icon" className="text-white size-9" />
