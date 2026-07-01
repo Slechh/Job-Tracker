@@ -22,6 +22,8 @@ export async function JobsList({ searchParams }: JobsListProps) {
     ];
   }
 
+  console.log(where);
+
   const jobs = await prisma.job.findMany({
     where,
     orderBy: {
