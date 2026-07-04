@@ -6,17 +6,25 @@ datasource db {
   provider = "postgresql"
 }
 
+enum JobStatus {
+  Saved
+  Applied
+  Interview
+  Offer
+  Rejected
+}
+
 model Job {
-  id           Int      @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   company      String
   position     String
   location     String?
   link         String?
   salary       String?
-  status       String   @default("Saved")
+  status       JobStatus  @default(Saved)
   technologies String?
   description  String?
   notes        String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }

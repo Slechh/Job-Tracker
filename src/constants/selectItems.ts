@@ -1,9 +1,11 @@
-export const selectStatusItems = [
-  "Applied",
-  "Interview",
-  "Offer",
-  "Saved",
-  "Rejected",
-] as const;
+import { JobStatus } from "@prisma/client";
 
-export type SelectStatusType = (typeof selectStatusItems)[number];
+export const selectStatusItems: JobStatus[] = [
+  JobStatus.Applied,
+  JobStatus.Interview,
+  JobStatus.Offer,
+  JobStatus.Saved,
+  JobStatus.Rejected,
+];
+
+export type SelectStatusType = JobStatus;
