@@ -11,7 +11,7 @@ type FormInputsProps = {
 
 export function FormInputs({ register, errors }: FormInputsProps) {
   return (
-    <div className="grid grid-cols-2 gap-x-10 gap-y-2">
+    <>
       {inputOptions.map((option) => (
         <div key={option.label} className="flex flex-col gap-1.5">
           <label htmlFor={option.forInfo}>{option.label}</label>
@@ -28,6 +28,6 @@ export function FormInputs({ register, errors }: FormInputsProps) {
           </p>
         </div>
       ))}
-    </div>
+    </>
   );
 }

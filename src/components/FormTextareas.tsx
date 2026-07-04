@@ -10,7 +10,7 @@ type FormInputsProps = {
 
 export function FormTextarea({ register }: FormInputsProps) {
   return (
-    <div className="flex flex-col gap-5">
+    <>
       {textareaOptions.map((option) => (
         <div key={option.label} className="flex flex-col gap-1.5">
           <label htmlFor={option.forInfo}>{option.label}</label>
@@ -22,6 +22,6 @@ export function FormTextarea({ register }: FormInputsProps) {
           />
         </div>
       ))}
-    </div>
+    </>
   );
 }

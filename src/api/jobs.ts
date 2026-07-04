@@ -17,3 +17,15 @@ export async function getJobs() {
 
   return response.json();
 }
+
+export async function updateJob(id: number | undefined, data: JobFormData) {
+  const response = await fetch(`/api/jobs/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return response.json();
+}
