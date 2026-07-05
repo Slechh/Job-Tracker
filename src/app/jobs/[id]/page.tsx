@@ -1,3 +1,4 @@
+import { Icon } from "@/components/Icon";
 import { JobDetails } from "@/components/JobDetails";
 import { JobCard } from "@/components/jobs/JobCard";
 import { prisma } from "@/lib/prisma";
@@ -25,7 +26,13 @@ export default async function JobInfoPage({ params }: JobInfoPageProps) {
   return (
     <main className="px-4 py-8">
       <div className="max-w-5xl mx-auto flex flex-col gap-5">
-        <JobCard job={job} />
+        <JobCard job={job}>
+          <button className="flex justify-end">
+            <div className="bg-light-gray p-2 rounded-md text-blue border-l-2">
+              <Icon id="trash-icon" className="size-6" />
+            </div>
+          </button>
+        </JobCard>
         <JobDetails job={job} />
       </div>
     </main>

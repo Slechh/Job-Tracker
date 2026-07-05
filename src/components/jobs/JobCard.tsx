@@ -3,7 +3,7 @@ import type { Job } from "@prisma/client";
 
 type JobCardProps = {
   job: Job;
-  children?: string;
+  children?: React.ReactNode;
 };
 
 export function JobCard({ job, children }: JobCardProps) {
@@ -41,7 +41,7 @@ export function JobCard({ job, children }: JobCardProps) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-between">
         <h2 className="flex gap-2 items-center text-sm px-1 py-0.5 text-blue bg-soft-slate rounded-md">
           <Icon id="loading-icon" className="size-4" />
           {job.status.toUpperCase()}
