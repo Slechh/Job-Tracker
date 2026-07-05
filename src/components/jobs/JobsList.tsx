@@ -1,6 +1,8 @@
 import { JobCard } from "./JobCard";
 import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Prisma, JobStatus } from "@prisma/client";
+
+import Link from "next/link";
 
 type JobsListProps = {
   searchParams: Promise<{ status?: string; search?: string }>;
@@ -10,8 +12,12 @@ export async function JobsList({ searchParams }: JobsListProps) {
   const { status, search } = await searchParams;
   const where: Prisma.JobWhereInput = {};
 
-  if (status && status !== "All") {
-    where.status = status;
+  if (
+    status &&
+    status !== "All" &&
+    Object.values(JobStatus).includes(status as JobStatus)
+  ) {
+    where.status = status as JobStatus;
   }
 
   if (search) {
@@ -35,7 +41,9 @@ export async function JobsList({ searchParams }: JobsListProps) {
     <ul className="flex flex-col gap-5">
       {jobs.map((job) => (
         <li key={job.id}>
-          <JobCard job={job} />
+          <Link href={`/jobs/${job.id}`}>
+            <JobCard job={job} />
+          </Link>
         </li>
       ))}
     </ul>
