@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma, JobStatus } from "@prisma/client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 type JobsListProps = {
   searchParams: Promise<{ status?: string; search?: string }>;
@@ -46,6 +47,17 @@ export async function JobsList({ searchParams }: JobsListProps) {
           </Link>
         </li>
       ))}
+      {jobs.length < 1 && (
+        <div className="flex flex-col gap-4 items-center justify-center">
+          <Image
+            src="/images/empty-job.png"
+            alt="Job vacancy empty"
+            width={500}
+            height={500}
+          />
+          <p className="text-2xl font-bold">Empty...</p>
+        </div>
+      )}
     </ul>
   );
 }
