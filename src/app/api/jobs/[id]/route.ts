@@ -35,3 +35,19 @@ export async function PUT(request: Request, { params }: RouteProps) {
     return NextResponse.json({ message: "Job not found" }, { status: 404 });
   }
 }
+
+export async function DELETE(_request: Request, { params }: RouteProps) {
+  const { id } = await params;
+
+  try {
+    const job = await prisma.job.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return NextResponse.json(job);
+  } catch {
+    return NextResponse.json({ message: "Job not found" }, { status: 404 });
+  }
+}

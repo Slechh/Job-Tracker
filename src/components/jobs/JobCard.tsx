@@ -43,7 +43,6 @@ export function JobCard({ job, children }: JobCardProps) {
       </div>
       <div className="flex flex-col justify-between">
         <h2 className="flex gap-2 items-center text-sm px-1 py-0.5 text-blue bg-soft-slate rounded-md">
-          <Icon id="loading-icon" className="size-4" />
           {job.status.toUpperCase()}
         </h2>
         {children}

@@ -29,3 +29,15 @@ export async function updateJob(id: number | undefined, data: JobFormData) {
 
   return response.json();
 }
+
+export async function deleteJob(id: number) {
+  const response = await fetch(`/api/jobs/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete job");
+  }
+  
+  return response.json();
+}
