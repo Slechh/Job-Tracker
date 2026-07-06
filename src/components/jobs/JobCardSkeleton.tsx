@@ -1,6 +1,6 @@
 export function JobCardSkeleton() {
   return (
-    <div className="animate-pulse relative flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between">
+    <div className="animate-pulse relative flex min-h-44.25 px-5 py-4 bg-white border border-soft-slate rounded-md justify-between">
       <div className="flex gap-4.5 items-center">
         <div className="size-30 rounded-full bg-gray-200" />
 
@@ -18,7 +18,11 @@ export function JobCardSkeleton() {
         </div>
       </div>
 
-      <div className="h-7 w-24 rounded-md bg-gray-200" />
+      <div className="flex flex-col justify-between items-end">
+        <div className="h-7 w-24 rounded-md bg-gray-200" />
+
+        <div className="size-10 rounded-md bg-gray-200" />
+      </div>
     </div>
   );
 }
