@@ -63,8 +63,6 @@ export function JobForm({
     }
   };
 
-  console.log(isDisabled);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

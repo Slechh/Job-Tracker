@@ -1,5 +1,4 @@
 import { DeleteButton } from "@/components/DeleteButton";
-import { Icon } from "@/components/Icon";
 import { JobDetails } from "@/components/JobDetails";
 import { JobCard } from "@/components/jobs/JobCard";
 import { prisma } from "@/lib/prisma";
@@ -28,7 +27,7 @@ export default async function JobInfoPage({ params }: JobInfoPageProps) {
     <main className="px-4 py-8">
       <div className="max-w-5xl mx-auto flex flex-col gap-5">
         <JobCard job={job}>
-          <DeleteButton jobId={job.id} />
+          <DeleteButton jobId={job.id}/>
         </JobCard>
         <JobDetails job={job} />
       </div>
