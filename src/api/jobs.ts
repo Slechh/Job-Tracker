@@ -9,11 +9,19 @@ export async function createJob(data: JobFormData) {
     body: JSON.stringify(data),
   });
 
+  if (!response.ok) {
+    throw new Error("Failed to create job");
+  }
+
   return response.json();
 }
 
 export async function getJobs() {
-  const response = await fetch("api/jobs");
+  const response = await fetch("/api/jobs");
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch jobs");
+  }
 
   return response.json();
 }
@@ -27,6 +35,10 @@ export async function updateJob(id: number | undefined, data: JobFormData) {
     body: JSON.stringify(data),
   });
 
+  if (!response.ok) {
+    throw new Error("Failed to update job");
+  }
+
   return response.json();
 }
 
@@ -38,6 +50,6 @@ export async function deleteJob(id: number) {
   if (!response.ok) {
     throw new Error("Failed to delete job");
   }
-  
+
   return response.json();
 }
