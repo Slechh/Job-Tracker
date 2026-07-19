@@ -14,9 +14,16 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     <main className="py-4 px-4">
       <div className="max-w-5xl mx-auto flex flex-col gap-3">
         <h1 className="font-bold text-3xl">Jobs</h1>
+
         <div className="flex flex-col gap-5">
-          <SearchInput />
-          <FiltersTab />
+          <Suspense fallback={null}>
+            <SearchInput />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <FiltersTab />
+          </Suspense>
+
           <Suspense fallback={<JobsListSkeleton />}>
             <JobsList searchParams={searchParams} />
           </Suspense>

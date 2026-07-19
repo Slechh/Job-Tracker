@@ -5,7 +5,7 @@ export function JobsListSkeleton() {
     <ul className="flex flex-col gap-5">
       {Array.from({ length: 3 }).map((_, index) => (
         <li key={index}>
-          <JobCardSkeleton />
+          <JobCardSkeleton isOverview={false} />
         </li>
       ))}
     </ul>

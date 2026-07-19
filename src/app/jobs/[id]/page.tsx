@@ -17,7 +17,7 @@ export default async function JobInfoPage({ params }: JobInfoPageProps) {
         <Suspense
           fallback={
             <>
-              <JobCardSkeleton />
+              <JobCardSkeleton isOverview />
               <JobFormSkeleton />
             </>
           }
