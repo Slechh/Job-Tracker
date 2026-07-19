@@ -18,10 +18,10 @@ export async function JobInfoContet({ id }: JobInfoContetProps) {
   if (!job) {
     notFound();
   }
-  
+
   return (
     <>
-      <JobCard job={job}>
+      <JobCard job={job} isOverview={false}>
         <DeleteButton jobId={job.id} />
       </JobCard>
       <JobDetails job={job} />

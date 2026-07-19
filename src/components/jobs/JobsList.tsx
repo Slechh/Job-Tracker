@@ -43,7 +43,7 @@ export async function JobsList({ searchParams }: JobsListProps) {
       {jobs.map((job) => (
         <li key={job.id}>
           <Link href={`/jobs/${job.id}`}>
-            <JobCard job={job} />
+            <JobCard job={job} isOverview={true} />
           </Link>
         </li>
       ))}

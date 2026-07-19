@@ -1,16 +1,21 @@
-import { Icon } from "@/components/Icon";
 import type { Job } from "@prisma/client";
+import clsx from "clsx";
 
 type JobCardProps = {
   job: Job;
   children?: React.ReactNode;
+  isOverview: boolean;
 };
 
-export function JobCard({ job, children }: JobCardProps) {
+export function JobCard({ job, children, isOverview }: JobCardProps) {
   return (
     <div
-      className="relative flex px-5 py-4 bg-white border border-soft-slate rounded-md justify-between before:content-[''] before:h-full before:w-1  
-        before:absolute before:rounded-l-md before:top-0 before:left-0 hover:before:bg-light-blue hover:shadow-[0_0_10px_rgba(0,0,0,0.08)] before:transition-all before:duration-300 transition-shadow duration-300"
+      className={clsx(
+        "relative flex justify-between rounded-md border border-soft-slate bg-white px-5 py-4",
+        isOverview
+          ? "before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:rounded-l-md before:content-[''] before:transition-all before:duration-300 hover:before:bg-light-blue hover:shadow-[0_0_10px_rgba(0,0,0,0.08)] transition-shadow duration-300"
+          : "",
+      )}
     >
       <div className="flex gap-4.5 items-center">
         <div className="size-30 rounded-full bg-light-gray flex items-center justify-center text-2xl font-bold">

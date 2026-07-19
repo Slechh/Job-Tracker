@@ -11,27 +11,8 @@ type JobDetailsProps = {
 };
 
 export function JobDetails({ job }: JobDetailsProps) {
-  const [isDisabled, setIsDisabled] = useState(true);
-
   return (
     <div className="flex flex-col bg-white rounded-md border border-soft-slate px-5 pt-8 pb-4 gap-5">
-      <div className="flex justify-between">
-        <h2 className="text-xl font-semibold">Vacation Information</h2>
-        <button
-          className={clsx(
-            isDisabled ? "text-blue" : "text-red-500",
-            "flex items-center justify-center gap-2.5",
-          )}
-          type="button"
-          onClick={() => setIsDisabled((prev) => !prev)}
-        >
-          <Icon
-            id={`${isDisabled ? "edit" : "close"}-icon`}
-            className={clsx(isDisabled ? "size-4" : "size-6")}
-          />
-          <p>{isDisabled && "Edit Job"}</p>
-        </button>
-      </div>
       <JobForm
         defaultValues={{
           company: job.company,
@@ -46,8 +27,6 @@ export function JobDetails({ job }: JobDetailsProps) {
         }}
         variant="edit"
         jobId={job.id}
-        isDisabled={isDisabled}
-        setIsDisabled={setIsDisabled}
       />
     </div>
   );
