@@ -70,23 +70,27 @@ export function JobForm({ variant, defaultValues, jobId }: JobFormProps) {
 
   return (
     <>
-      <div className="flex justify-between">
-        <h2 className="text-xl font-semibold">Vacation Information</h2>
-        <button
-          className={clsx(
-            isDisabled ? "text-blue" : "text-red-500",
-            "flex items-center justify-center gap-2.5",
-          )}
-          type="button"
-          onClick={handleEditClick}
-        >
-          <Icon
-            id={`${isDisabled ? "edit" : "close"}-icon`}
-            className={clsx(isDisabled ? "size-4" : "size-6")}
-          />
-          <p>{isDisabled && "Edit Job"}</p>
-        </button>
-      </div>
+      {variant === "edit" && (
+        <>
+          <div className="flex justify-between">
+            <h2 className="text-xl font-semibold">Vacation Information</h2>
+            <button
+              className={clsx(
+                isDisabled ? "text-blue" : "text-red-500",
+                "flex items-center justify-center gap-2.5",
+              )}
+              type="button"
+              onClick={handleEditClick}
+            >
+              <Icon
+                id={`${isDisabled ? "edit" : "close"}-icon`}
+                className={clsx(isDisabled ? "size-4" : "size-6")}
+              />
+              <p>{isDisabled && "Edit Job"}</p>
+            </button>
+          </div>
+        </>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
